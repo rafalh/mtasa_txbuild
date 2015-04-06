@@ -1,0 +1,40 @@
+# Object files
+*.obj
+*.o
+*.a
+*.lib
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Visual Studio files
+*.sdf
+*.suo
+*.sln
+*.vcxproj*
+
+# Code Blocks
+*.workspace
+*.workspace.layout
+*.cbp
+*.depend
+
+# Binary files
+*.dll
+*.exe
+*.exp
+*.so
+*.out
+
+# Other
+*.layout
+*.tlog
+*.pdb
+*.opensdf
+
+# Directories
+bin/*
+*/obj/*
+*/lib/*
+ipch/*

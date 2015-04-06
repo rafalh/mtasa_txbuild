@@ -1,9 +1,9 @@
 TXBUILD_DIR := $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
 
-TXMAIN_PATH        := $(TXBUILD_DIR)txbuild.exe
-TXSTRLIST_PATH     := $(TXBUILD_DIR)txstrlist.exe
-TXPROTECT_PATH     := $(TXBUILD_DIR)txprotect.exe
-ADDUTF8BOM_PATH    := $(TXBUILD_DIR)addutf8bom.exe
+TXMAIN_PATH        := $(TXBUILD_DIR)bin\txbuild.exe
+TXSTRLIST_PATH     := $(TXBUILD_DIR)bin\txstrlist.exe
+TXPROTECT_PATH     := $(TXBUILD_DIR)bin\txprotect.exe
+ADDUTF8BOM_PATH    := $(TXBUILD_DIR)bin\addutf8bom.exe
 
 ifndef VERBOSE
 Q := @
