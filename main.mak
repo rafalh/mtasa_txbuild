@@ -1,8 +1,9 @@
 TXBUILD_DIR := $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
 
 # Load useful macros
-include $(TXBUILD_DIR)commands.mak
 include $(TXBUILD_DIR)utils.mak
+include $(TXBUILD_DIR)commands.mak
+include $(TXBUILD_DIR)helpers.mak
 
 # Load configuration
 include $(TXBUILD_DIR)config.mak
