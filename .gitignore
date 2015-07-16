@@ -32,9 +32,12 @@
 *.tlog
 *.pdb
 *.opensdf
+**/Makefile
 
 # Directories
 bin/*
+obj/*
 */obj/*
 */lib/*
 ipch/*
+test/*
