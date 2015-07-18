@@ -19,7 +19,7 @@ endif
 
 # Check if configuration is valid
 ifeq ($(wildcard $(RESOURCES_PATH)),) 
-  $(error RESOURCES_PATH is invalid)
+  $(error RESOURCES_PATH is invalid: $(RESOURCES_PATH))
 endif
 
 # Setup TXMAIN_FLAGS

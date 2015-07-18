@@ -2,7 +2,7 @@
 createDir = $(Q)$(MKDIR) "$(call nativePath,$(1))"
 
 # copyFile(src,dest)
-ifdef WINDIR
+ifdef windir
  copyFile = $(Q)$(COPY) "$(call nativePath,$(1))" "$(call nativePath,$(2))" >NUL
 else
  copyFile = $(Q)$(COPY) "$(call nativePath,$(1))" "$(call nativePath,$(2))"

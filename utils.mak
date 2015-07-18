@@ -2,9 +2,9 @@
 NULLSTR := # creating a null string
 SPACE   := $(NULLSTR) # end of the line
 
-ifdef WINDIR
+ifdef windir
 
- SEP: = \
+ SEP := \\
  APPEXT := .exe
 
  # nativePath(path)

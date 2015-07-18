@@ -11,7 +11,7 @@ else
  Q :=
 endif
 
-ifdef WINDIR
+ifdef windir
  COPY          := copy /Y
  MKDIR         := mkdir
  RM            := del /F /Q
@@ -25,7 +25,7 @@ endif
 
 ECHO          := $(Q)echo
 
-ifdef WINDIR
+ifdef windir
  LUA           := "$(TXBUILD_DIR)luajit\luajit.exe"
  LUAC_PARSE    := "$(TXBUILD_DIR)lua51\luac5.1.exe" -p
 else
