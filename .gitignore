@@ -20,13 +20,6 @@
 *.cbp
 *.depend
 
-# Binary files
-*.dll
-*.exe
-*.exp
-*.so
-*.out
-
 # Other
 *.layout
 *.tlog
@@ -41,3 +34,4 @@ obj/*
 */lib/*
 ipch/*
 test/*
+src/premake-output
