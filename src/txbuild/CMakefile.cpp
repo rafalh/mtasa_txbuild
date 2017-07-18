@@ -203,7 +203,7 @@ void CMakefile::WriteCompileRule(const CPath &Path, CMetaFile::EFileType Type)
         {
             m_Makefile << "\t$(call protectFile," << Temp << "," << Temp << ")\n";
             if(m_Options.bPreprocess)
-                m_Makefile << "\t$(call preprocessFile," << Temp << "," << Temp << ")\n";
+                m_Makefile << "\t$(call preprocessFile," << Temp << "," << Temp << ") -I \"$(dir $(LOADER_PATH))\"\n";
             if(m_Options.bCompile)
                 m_Makefile << "\t$(call compileFile,$(BUILD_DIR),$(PROJECT_NAME)/" << Input << ")\n";
         }
