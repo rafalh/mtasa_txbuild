@@ -1,8 +1,11 @@
-solution "TxBuild"
+(workspace or solution) "TxBuild"
 	configurations { "Release" }
 	language "C++"
 	targetdir "../bin"
 	objdir "../obj"
+	if location then
+		location "premake-output"
+	end
 	defines {
 		"NOMINMAX",
 	}
@@ -17,7 +20,11 @@ solution "TxBuild"
 	
 	configuration "Debug"
 		defines { "DEBUG" }
-		flags { "Symbols" }
+		if symbols then
+			symbols "On"
+		else
+			flags { "Symbols" }
+		end
 	
 	configuration "Release"
 		defines { "NDEBUG" }
