@@ -18,7 +18,7 @@ ifdef windir
  CD            := cd /D
 else
  COPY          := cp
- MKDIR         := mkdir
+ MKDIR         := mkdir -p
  RM            := rm -rf
  CD            := cd
 endif
