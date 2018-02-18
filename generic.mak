@@ -34,3 +34,9 @@ else
  
  .PHONY: $(PROJECT_NAME) $(TARGET_PREFIX)all $(TARGET_PREFIX)clean
 endif
+
+.PHONY: deploy
+deploy:
+# Dry run: -n
+	ssh "$(DEPLOY_HOST)" mkdir -p "$(DEPLOY_DIR)/$(PROJECT_DIR)/$(PROJECT_NAME)"
+	rsync -ruvz $(RSYNC_FLAGS) "$(call nativePath,$(OUTPUT))/" "$(DEPLOY_HOST):$(DEPLOY_DIR)/$(PROJECT_DIR)/$(PROJECT_NAME)/"
