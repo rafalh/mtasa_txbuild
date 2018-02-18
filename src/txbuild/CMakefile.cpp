@@ -252,9 +252,25 @@ void CMakefile::AddFile(const CPath &Path, CMetaFile::EFileType Type)
     if(!FileExists(FullPath))
         return;
     
-    bool bInserted = m_ResFiles.insert(Path).second;
-    if(!bInserted)
-        return; //cerr << "Warning! File " << Path << " has been defined multiple times.\n";
+    auto InsRet = m_ResFiles.insert(make_pair(Path, Type));
+    if(!InsRet.second)
+    {
+        CMetaFile::EFileType MergedType = InsRet.first->second;
+        if (MergedType == CMetaFile::FT_CLIENT_SCRIPT && Type != CMetaFile::FT_CLIENT_SCRIPT)
+            MergedType = CMetaFile::FT_SHARED_SCRIPT;
+        if (MergedType == CMetaFile::FT_SERVER_SCRIPT && Type != CMetaFile::FT_SERVER_SCRIPT)
+            MergedType = CMetaFile::FT_SHARED_SCRIPT;
+        if (MergedType != InsRet.first->second)
+        {
+            InsRet.first->second = MergedType;
+            Type = MergedType;
+            cerr << "Suggestion: use one script tag with type=\"shared\" instead of two with types \"client\" and \"server\" for file "
+                << Path << ".\n";
+            // FIXME: WriteCompileRule doesnt handle repeatition
+        }
+        else
+            cerr << "Warning! File " << Path << " has been defined multiple times.\n";
+    }
     
     if(Type == CMetaFile::FT_CLIENT_SCRIPT || Type == CMetaFile::FT_SHARED_SCRIPT)
         m_bClientScript = true;

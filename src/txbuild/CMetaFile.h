@@ -24,6 +24,16 @@ class CMetaFile: TiXmlDocument
             
             CPath Path;
             EFileType Type;
+
+            bool operator<(const SFileInfo &other) const
+            {
+                return Path < other.Path || (Path == other.Path && Type < other.Type);
+            }
+
+            bool operator==(const SFileInfo &other) const
+            {
+                return Path == other.Path && Type == other.Type;
+            }
         };
         
         CMetaFile(const CPath &RootPath);
@@ -61,6 +71,8 @@ class CMetaFile: TiXmlDocument
         std::vector<std::string> m_Pages;
         std::vector<SFileInfo> m_Files;
         std::vector<CPath> m_MetaList;
+
+        void AddFile(const CPath &p, EFileType t);
 };
 
 #endif // CMETAFILE_H

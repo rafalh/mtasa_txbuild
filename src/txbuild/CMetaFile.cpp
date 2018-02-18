@@ -2,6 +2,7 @@
 #include "CPath.h"
 #include "CException.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -82,7 +83,7 @@ void CMetaFile::Load(const CPath &Path)
             CPath NewFilePath = Path + pszSrc;
             NewFilePath.Resolve();
             
-            m_Files.push_back(SFileInfo(NewFilePath, Type));
+            AddFile(NewFilePath, Type);
             
             if(!m_Options.bJoin)
             {
@@ -102,7 +103,7 @@ void CMetaFile::Load(const CPath &Path)
             CPath NewFilePath = Path + pszSrc;
             NewFilePath.Resolve();
             
-            m_Files.push_back(SFileInfo(NewFilePath, FT_STATIC));
+            AddFile(NewFilePath, FT_STATIC);
             
             if (strName != "serverfile")
             {
@@ -251,4 +252,22 @@ void CMetaFile::RequestMinVer(const std::string &Ver, bool bClient)
     std::string &Target = bClient ? m_MinVerC : m_MinVerS;
     if(Target.compare(Ver) < 0)
         Target = Ver;
+}
+
+void CMetaFile::AddFile(const CPath &p, EFileType t)
+{
+    if (t == FT_CLIENT_SCRIPT || t == FT_SERVER_SCRIPT)
+    {
+        EFileType OtherType = (t == FT_CLIENT_SCRIPT ? FT_SERVER_SCRIPT : FT_CLIENT_SCRIPT);
+        auto it = std::find(m_Files.begin(), m_Files.end(), SFileInfo(p, OtherType));
+        if (it != m_Files.end())
+        {
+            it->Type = FT_SHARED_SCRIPT;
+            return;
+        }
+    }
+    
+    SFileInfo FileDesc(p, t);
+    if (std::find(m_Files.begin(), m_Files.end(), FileDesc) == m_Files.end())
+        m_Files.push_back(FileDesc);
 }

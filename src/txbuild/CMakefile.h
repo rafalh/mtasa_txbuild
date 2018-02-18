@@ -5,6 +5,7 @@
 #include "CMetaFile.h"
 #include "SBuildOptions.h"
 #include <unordered_set>
+#include <unordered_map>
 #include <fstream>
 
 class CMakefile
@@ -46,7 +47,7 @@ class CMakefile
         SBuildOpts m_Options;
         
         bool m_bServerScript, m_bClientScript;
-        std::unordered_set<std::string> m_ResFiles;
+        std::unordered_map<std::string, CMetaFile::EFileType> m_ResFiles;
         std::unordered_set<std::string> m_Dirs;
         std::ofstream m_Makefile;
         std::vector<CMetaFile::SFileInfo> m_FileList;
