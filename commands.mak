@@ -1,9 +1,9 @@
 TXBUILD_DIR := $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
 
-TXMAIN_PATH        := $(TXBUILD_DIR)bin$(SEP)txbuild$(APPEXT)
-TXSTRLIST_PATH     := $(TXBUILD_DIR)bin$(SEP)txstrlist$(APPEXT)
-TXPROTECT_PATH     := $(TXBUILD_DIR)bin$(SEP)txprotect$(APPEXT)
-ADDUTF8BOM_PATH    := $(TXBUILD_DIR)bin$(SEP)addutf8bom$(APPEXT)
+TXMAIN_PATH        := $(TXBUILD_DIR)bin/txbuild$(APPEXT)
+TXSTRLIST_PATH     := $(TXBUILD_DIR)bin/txstrlist$(APPEXT)
+TXPROTECT_PATH     := $(TXBUILD_DIR)bin/txprotect$(APPEXT)
+ADDUTF8BOM_PATH    := $(TXBUILD_DIR)bin/addutf8bom$(APPEXT)
 
 ifndef VERBOSE
  Q := @
@@ -26,16 +26,16 @@ endif
 ECHO          := $(Q)echo
 
 ifdef windir
- LUA           := "$(TXBUILD_DIR)luajit\luajit.exe"
- LUAC_PARSE    := "$(TXBUILD_DIR)lua51\luac5.1.exe" -p
+ LUA           := "$(call nativePath,$(TXBUILD_DIR))luajit\luajit.exe"
+ LUAC_PARSE    := "$(call nativePath,$(TXBUILD_DIR))lua51\luac5.1.exe" -p
 else
  LUA           := "luajit"
  LUAC_PARSE    := "luac5.1" -p
 endif
 
-LUAC          := "$(TXBUILD_DIR)luac_mta$(APPEXT)"
+LUAC          := "$(call nativePath,$(TXBUILD_DIR)luac_mta$(APPEXT))"
 LUAPP         := $(LUA) "$(TXBUILD_DIR)preprocess.lua"
-TXMAIN        := "$(TXMAIN_PATH)"
-TXPROTECT     := "$(TXPROTECT_PATH)"
-TXSTRLIST     := "$(TXSTRLIST_PATH)"
-ADDUTF8BOM    := "$(ADDUTF8BOM_PATH)"
+TXMAIN        := "$(call nativePath,$(TXMAIN_PATH))"
+TXPROTECT     := "$(call nativePath,$(TXPROTECT_PATH))"
+TXSTRLIST     := "$(call nativePath,$(TXSTRLIST_PATH))"
+ADDUTF8BOM    := "$(call nativePath,$(ADDUTF8BOM_PATH))"

@@ -95,6 +95,7 @@ void CMakefile::WriteJoinRule(const std::vector<std::string> &FileList, const ch
     if(m_Options.bProtect)
         m_Makefile << " $(LOADER_PATH)";
     m_Makefile << " | $(OUTPUT)\n";
+    
     m_Makefile << "\t$(ECHO) Building " << pszFilename << "\n";
     
     m_Makefile << "\t$(CD) $(BUILD_DIR) && $(LUAC) $(LUAC_FLAGS) -o \"$(call nativePath,$(PROJECT_NAME)/" << pszFilename << ")\"";
@@ -151,7 +152,7 @@ void CMakefile::WriteCompileRule(const CPath &Path, CMetaFile::EFileType Type)
         m_CleanList.push_back(StrList);
         m_StrList.push_back(StrList);
         
-        m_Makefile << StrList << ": " << Input << " | " << TempDir << "\n";
+        m_Makefile << StrList << ": " << Input << " $(TXSTRLIST_PATH) | " << TempDir << "\n";
         m_Makefile << "\t$(call genStrListFromLua," << StrList << "," << Input << "," << pszType << ")\n";
         m_Makefile << "\n";
     }
