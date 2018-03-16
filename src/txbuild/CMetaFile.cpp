@@ -164,7 +164,7 @@ void CMetaFile::Load(const CPath &Path)
             if(pszServer)
                 RequestMinVer(pszServer, false);
         }
-        else if(strName == "export" || strName == "aclrequest" || strName == "include")
+        else if(strName == "export" || strName == "aclrequest" || strName == "include" || strName == "oop")
         {
             // Copy to destination meta.xml
             m_pOutputRoot->InsertEndChild(*pEl);
