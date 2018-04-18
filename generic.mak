@@ -1,4 +1,4 @@
-$(info Toxic Build 2.4)
+$(info Toxic Build 2.5)
 
 TXBUILD_DIR := $(dir $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST)))
 include $(TXBUILD_DIR)main.mak
