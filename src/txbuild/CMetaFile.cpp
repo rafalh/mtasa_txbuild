@@ -84,8 +84,18 @@ void CMetaFile::Load(const CPath &Path)
             NewFilePath.Resolve();
             
             AddFile(NewFilePath, Type);
-            
-            if(!m_Options.bJoin)
+
+            const char *pszLoad = pEl->Attribute("load");
+            if (pszLoad && !strcmp(pszLoad, "false"))
+            {
+                if (Type != FT_SERVER_SCRIPT)
+                {
+                    TiXmlElement *pNewEl = m_pOutputRoot->InsertEndChild(TiXmlElement("file"))->ToElement();
+                    pNewEl->SetAttribute("download", "false");
+                    pNewEl->SetAttribute("src", NewFilePath.c_str());
+                }
+            }
+            else if(!m_Options.bJoin)
             {
                 TiXmlElement *pNewEl = m_pOutputRoot->InsertEndChild(*pEl)->ToElement();
                 pNewEl->SetAttribute("src", NewFilePath.c_str());
