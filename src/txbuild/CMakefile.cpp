@@ -235,6 +235,8 @@ void CMakefile::WriteCopyRule(const CPath &Path)
     
     m_Makefile << Output << ": " << Input << " | " << OutputDir << "\n";
     m_Makefile << "\t$(ECHO) Copying " << Path << "\n";
+    if (Path.GetExt() == "xml")
+        m_Makefile << "\t$(call validateXml," << Input << ")\n";
     m_Makefile << "\t$(call copyFile," << Input << "," << Output << ")\n";
     m_Makefile << "\n";
 }

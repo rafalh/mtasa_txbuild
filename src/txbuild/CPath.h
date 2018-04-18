@@ -65,6 +65,16 @@ class CPath: public std::string
             return std::string(*this, nPos);
         }
         
+        std::string GetExt() const
+        {
+            size_t NamePos = GetFileNamePos();
+            size_t ExtPos = find_last_of(".");
+            if (ExtPos > NamePos)
+                return std::string(*this, ExtPos + 1);
+            else
+                return std::string();
+        }
+        
         CPath Join(const CPath &Path) const
         {
             if(empty())
