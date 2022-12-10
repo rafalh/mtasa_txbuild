@@ -35,9 +35,7 @@ jobs:
     - name: Configure CMake
       shell: cmd
       working-directory: ${{github.workspace}}/build
-      run: |
-        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
-        cmake ../src -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -A Win32
+      run: cmake ../src -DCMAKE_BUILD_TYPE=%BUILD_TYPE%
 
     - name: Build
       shell: cmd
