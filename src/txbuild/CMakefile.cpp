@@ -45,18 +45,18 @@ void CMakefile::Generate(const CPath &Path)
     m_OutputList.push_back("$(OUTPUT)/meta.xml");
     
     m_Makefile << "$(TARGET_PREFIX)all:";
-    for(const string &Path: m_OutputList)
-        m_Makefile << " " << Path;
+    for(const string &OutputPath: m_OutputList)
+        m_Makefile << " " << OutputPath;
     m_Makefile << "\n\n";
     
     m_Makefile << "$(TARGET_PREFIX)clean:\n";
-    for(const string &Path: m_CleanList)
-        m_Makefile << "\t$(call delFile," << Path << ")\n";
+    for(const string &CleanPath: m_CleanList)
+        m_Makefile << "\t$(call delFile," << CleanPath << ")\n";
     m_Makefile << "\n";
     
     string strMetaList;
-    for(const CPath &Path: m_MetaList)
-        strMetaList += Path.ToMakefileFormat() + " ";
+    for(const CPath &MetaPath: m_MetaList)
+        strMetaList += MetaPath.ToMakefileFormat() + " ";
     m_Makefile << "$(SELF) $(BUILD_DIR)/meta.xml: $(TXMAIN_PATH) " << strMetaList << "\n";
     m_Makefile << "\t$(ECHO) Building meta.xml\n";
     m_Makefile << "\t$(TXMAIN) " << m_Options.ToStr() << " " << "\n";

@@ -166,7 +166,7 @@ int CStringList::SaveToTxt(const char *pszPath)
 int main(int argc, const char *argv[])
 {
     CStringList StrList;
-    CStringList::EType LuaType;
+    CStringList::EType LuaType = CStringList::SERVER;
     const char *pszOutput = "strings.txt";
     bool bLua = false;
     
