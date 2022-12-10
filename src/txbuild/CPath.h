@@ -13,7 +13,7 @@
 inline std::string StrReplace(const std::string &str, const std::string &strSearch, const std::string &strReplace)
 {
     std::string strRet;
-    unsigned i = 0;
+    std::size_t i = 0;
     
     while(i < str.size())
     {
