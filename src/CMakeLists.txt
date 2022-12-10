@@ -10,7 +10,7 @@ else()
 endif()
 
 if (MINGW)
-    add_link_options(-static-libgcc -static-libstdc++ -static)
+    add_link_options(-static $<$<CONFIG:Release>:-s>)
 endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../bin")
