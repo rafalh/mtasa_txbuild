@@ -73,6 +73,23 @@ Protection with loader
 ----------------------
 Loader is a preprocessed Lua script used for additional protection of scripts. If `PROTECT` is set to 1 every Lua script is returned as embedded in custom loader defined using `LOADER_PATH` variable in `config.mak`. When preprocessing loader file preprocessor variable `__LUA_CHUNK_TBL__` contains table of strings from input Lua file. Loader can use preprocessor to encrypt those lines and embedd them for future execution in runtime.
 
+Building
+--------
+Toxic Build consists of some native components that needs to be built using a C++ compiler. The project uses CMake build system. Source code is in `src` directory.
+
+On Windows Visual Studio can be used for building (it has CMake support built-in). Alternatively MinGW can be used with a separate CMake GUI tool.
+
+On Linux GCC and CMake can be installed from distribution package manager.
+
+To build on Ubuntu run:
+
+```bash
+sudo apt-get install build-essentials cmake
+mkdir build
+cmake ../src -DCMAKE_BUILD_TYPE=Release
+make
+```
+
 Copyright
 ---------
 Copyright (c) 2012 Rafał Harabień
