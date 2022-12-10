@@ -77,7 +77,7 @@ Building
 --------
 Toxic Build consists of some native components that needs to be built using a C++ compiler. The project uses CMake build system. Source code is in `src` directory.
 
-On Windows Visual Studio can be used for building (it has CMake support built-in). Alternatively MinGW can be used with a separate CMake GUI tool.
+On Windows Visual Studio can be used for building (it has CMake support built-in). Alternatively MinGW can be used with a separate CMake GUI tool. Building can be avoided by downloading `txbuild-bin-win32.zip` file from [Releases](https://github.com/rafalh/mtasa_txbuild/releases) page and unpacking it in the root directory (preserving `bin` subdirectory).
 
 On Linux GCC and CMake can be installed from distribution package manager.
 
